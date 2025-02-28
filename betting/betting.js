@@ -84,7 +84,8 @@ document.getElementById("submitButton").addEventListener("click", function () {
       }, 100);
     }, 5000);
   } else if (betAmount > balance) {
-    document.getElementById("betError").style = "display: inline; color:red";
+    document.getElementById("betError").style =
+      "display: block; color:#800000; background-color:#f8d7da; padding: 10px; border-radius: 10";
   }
 
   console.log("Duck: " + duck);
@@ -112,7 +113,7 @@ function checkNameDict(duckName) {
     }
   }
   document.getElementById("nameError").style =
-    "display: block; color:#800000; background-color:#f8d7da; padding: 10px; border-radius:";
+    "display: block; color:#800000; background-color:#f8d7da; padding: 10px; border-radius: 10";
   return false;
     
 }
