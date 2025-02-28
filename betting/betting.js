@@ -22,17 +22,36 @@ let classDict = {
   "TIMOTHY GERMANO": 20,
   "WEITING HUANG": 21,
   "CHRIS MINNICK": 22,
-  "CHRIS PENICK": 23
+  "CHRIS PENICK": 23,
 };
 
 let raceWinner = Math.floor(Math.random() * 23) + 1;
 
 document.getElementById("submitButton").addEventListener("click", function () {
+  var progressBar = document.querySelector(".progress-bar");
+  progressBar.style.width = "100%";
+  progressBar.setAttribute("aria-valuenow", 100);
   const duck = document.getElementById("duck").value.toUpperCase();
   const betAmount = document.getElementById("betAmount").value;
+  const resText = document.getElementById("res-text");
+  const winAmount = betAmount * 3;
+  if (betAmount != undefined && duck != "") {
+    setTimeout(() => {
+      resText.classList.remove("hidden");
+      if (raceWinner == classDict[duck]) {
+        resText.innerText = `Congrats, you have won ${winAmount} dollars!`;
+        resText.classList.add("alert-primary");
+      } else {
+        resText.innerHTML =
+          "<p>Sorry, you have lost all your money. Please call <a href='tel:+18005224700'>1-800-GAMBLER</a> for help</p>";
+        resText.classList.add("alert-danger");
+      }
+    }, 5000);
+  }
 
   console.log("Duck: " + duck);
   console.log("Bet Amount: " + betAmount);
+
   console.log("Race Winner Number:"+raceWinner);
   console.log("Duck Bet Number:"+classDict[duck]);
   checkNameDict(duck);
@@ -59,3 +78,4 @@ function checkNameDict(duckName){
     document.getElementById("nameError").style = "display: inline; color:red";
 
 }
+

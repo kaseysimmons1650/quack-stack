@@ -1,0 +1,6 @@
+.hidden {
+  visibility: hidden;
+}
+.progress-bar {
+  transition: width 5s;
+}
