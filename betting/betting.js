@@ -72,5 +72,6 @@ function checkNameDict(duckName) {
     }
   }
   document.getElementById("nameError").style =
-    "display: inline; color:#800000; background-color:#f8d7da";
+    "display: block; color:#800000; background-color:#f8d7da; padding: 10px; border-radius:";
+    
 }
