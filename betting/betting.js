@@ -1,4 +1,3 @@
-
 let classDict = {
   "AJ ZIMMERMAN": 1,
   "ANI UNDRAKONDA": 2,
@@ -52,30 +51,26 @@ document.getElementById("submitButton").addEventListener("click", function () {
   console.log("Duck: " + duck);
   console.log("Bet Amount: " + betAmount);
 
-  console.log("Race Winner Number:"+raceWinner);
-  console.log("Duck Bet Number:"+classDict[duck]);
+  console.log("Race Winner Number:" + raceWinner);
+  console.log("Duck Bet Number:" + classDict[duck]);
   checkNameDict(duck);
-
 });
 
-
-function checkWinner(duckNumber){
-    if(duckNumber === raceWinner){
-        return true;
-    }
-    else{
-        return false;
-    }
+function checkWinner(duckNumber) {
+  if (duckNumber === raceWinner) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
-function checkNameDict(duckName){
-    duckName = duckName.toUpperCase();
-    for(duck in classDict){
-        if(duck === duckName){
-            return;
-        }
+function checkNameDict(duckName) {
+  duckName = duckName.toUpperCase();
+  for (duck in classDict) {
+    if (duck === duckName) {
+      return;
     }
-    document.getElementById("nameError").style = "display: inline; color:red";
-
+  }
+  document.getElementById("nameError").style =
+    "display: inline; color:#800000; background-color:#f8d7da";
 }
-
