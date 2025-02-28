@@ -107,12 +107,14 @@ function checkNameDict(duckName) {
   duckName = duckName.toUpperCase();
   for (duck in classDict) {
     if (duck === duckName) {
-      document.getElementById("nameError").style = "display: none; color:red";
+      document.getElementById("nameError").style = "display: none";
       return true;
     }
   }
-  document.getElementById("nameError").style = "display: inline; color:red";
+  document.getElementById("nameError").style =
+    "display: block; color:#800000; background-color:#f8d7da; padding: 10px; border-radius:";
   return false;
+    
 }
 
 var modal = document.getElementById("depositModal");
