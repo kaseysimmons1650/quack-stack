@@ -36,7 +36,7 @@ let classDict = {
   "CHRIS PENICK": 23
 };
 
-let raceWinner = Math.floor(Math.random() * 22) + 1;
+let raceWinner = Math.floor(Math.random() * 23) + 1;
 
 document.getElementById("submitButton").addEventListener("click", function () {
   const duck = document.getElementById("duck").value.toUpperCase();
