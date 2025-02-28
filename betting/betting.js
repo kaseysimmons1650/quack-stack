@@ -24,32 +24,44 @@ let classDict = {
   "CHRIS PENICK": 23,
 };
 
-let raceWinner = Math.floor(Math.random() * 23) + 1;
 let balance = 100;
 const balanceText = document.getElementById("balance");
 document.getElementById("submitButton").addEventListener("click", function () {
+  let raceWinner = Math.floor(Math.random() * 23) + 1;
   const resText = document.getElementById("res-text");
   resText.classList.add("hidden");
-  var progressBar = document.querySelector(".progress-bar");
-
+  // var progressBar = document.querySelector(".progress-bar");
+  // resetProgress(progressBar);
+  // progressBar.style.width = "100%";
+  // progressBar.setAttribute("aria-valuenow", 100);
   const duck = document.getElementById("duck").value.toUpperCase();
   const betAmount = document.getElementById("betAmount").value;
   const winAmount = betAmount * 3;
+
   if (
     betAmount != undefined &&
     duck != "" &&
     betAmount <= balance &&
     checkNameDict(duck)
   ) {
+    var progressBar = document.querySelector(".progress-bar");
+    resetProgress(progressBar);
     document.getElementById("nameError").style = "display:none";
     progressBar.style.transition = "none";
     progressBar.style.width = "0%";
     progressBar.setAttribute("aria-valuenow", 0);
     progressBar.offsetHeight;
     progressBar.style.transition = "width 5s";
+
+  const winner = Object.keys(classDict).find(key =>classDict[key] === raceWinner);
+
+  resText.classList.add("hidden");
+  resText.classList.remove("alert-primary");
+  resText.classList.remove("alert-danger");
     progressBar.style.width = "100%";
     progressBar.setAttribute("aria-valuenow", 100);
     setTimeout(() => {
+      progressBar.textContent = "Ducks done racing!";
       resText.classList.remove("hidden");
       if (raceWinner == classDict[duck]) {
         resText.innerText = `Congrats, you have won ${winAmount} dollars!`;
@@ -62,8 +74,12 @@ document.getElementById("submitButton").addEventListener("click", function () {
         balance -= betAmount;
         balanceText.innerText = `Total balance: $${balance}`;
       }
+
       document.getElementById("submitButton").innerText = "Race again";
-    }, 5000);
+
+      setTimeout(function(){
+        alert(`The winner is #${raceWinner} ${winner}`);
+      }, 100);
   } else if (betAmount > balance) {
     document.getElementById("betError").style = "display: inline; color:red";
   }
@@ -88,6 +104,7 @@ function checkNameDict(duckName) {
   duckName = duckName.toUpperCase();
   for (duck in classDict) {
     if (duck === duckName) {
+            document.getElementById("nameError").style = "display: none; color:red";
       return true;
     }
   }
@@ -115,4 +132,10 @@ function depositMoney() {
   balance += depositInt;
   modal.style.display = "none";
   document.getElementById("balance").innerText = `Total balance: $${balance}`;
+
+function resetProgress(progressBar) {
+  progressBar.style.width = "0%";
+  progressBar.setAttribute("aria-valuenow", 0);
+  progressBar.textContent = "Ducks racing...";
+
 }
