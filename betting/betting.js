@@ -28,14 +28,14 @@ let classDict = {
 let raceWinner = Math.floor(Math.random() * 23) + 1;
 
 document.getElementById("submitButton").addEventListener("click", function () {
-  var progressBar = document.querySelector(".progress-bar");
-  progressBar.style.width = "100%";
-  progressBar.setAttribute("aria-valuenow", 100);
   const duck = document.getElementById("duck").value.toUpperCase();
   const betAmount = document.getElementById("betAmount").value;
   const resText = document.getElementById("res-text");
   const winAmount = betAmount * 3;
-  if (betAmount != undefined && duck != "") {
+  if (duck in classDict && betAmount != undefined && duck != "") {
+    var progressBar = document.querySelector(".progress-bar");
+    progressBar.style.width = "100%";
+    progressBar.setAttribute("aria-valuenow", 100);
     setTimeout(() => {
       resText.classList.remove("hidden");
       if (raceWinner == classDict[duck]) {
