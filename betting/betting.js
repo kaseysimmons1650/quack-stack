@@ -32,6 +32,9 @@ document.getElementById("submitButton").addEventListener("click", function () {
   const betAmount = document.getElementById("betAmount").value;
   const resText = document.getElementById("res-text");
   const winAmount = betAmount * 3;
+  const winner = Object.keys(classDict).find(
+    (key) => classDict[key] === raceWinner
+  );
   if (duck in classDict && betAmount != undefined && duck != "") {
     var progressBar = document.querySelector(".progress-bar");
     progressBar.style.width = "100%";
@@ -43,7 +46,7 @@ document.getElementById("submitButton").addEventListener("click", function () {
         resText.classList.add("alert-primary");
       } else {
         resText.innerHTML =
-          "<p>Sorry, you have lost all your money. Please call <a href='tel:+18005224700'>1-800-GAMBLER</a> for help</p>";
+          resText.innerHTML = `<p>Sorry, ${winner} won, and you have lost all your money. Please call <a href='tel:+18005224700'>1-800-GAMBLER</a> for help</p>`;
         resText.classList.add("alert-danger");
       }
     }, 5000);
