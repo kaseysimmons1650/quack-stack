@@ -1,14 +1,3 @@
-// document.getElementsByClassName("inpRatings")[0].oninput = function () {
-//   const val = this.value;
-
-//   if (parseInt(val)) {
-//     if (val < 1 || val > 10) {
-//       this.value = null;
-//     }
-//   } else {
-//     this.value = null;
-//   }
-// };
 
 let classDict = {
   "AJ ZIMMERMAN": 1,
@@ -27,7 +16,7 @@ let classDict = {
   "MATT CHENG": 14,
   "MAX GIRASOL": 15,
   "NATE NOTERMANN": 16,
-  "ROBIN PANN": 17,
+  "ROBIN PAN": 17,
   "STEPHEN THOMAS": 18,
   "TIA NGUYEN": 19,
   "TIMOTHY GERMANO": 20,
@@ -62,14 +51,31 @@ document.getElementById("submitButton").addEventListener("click", function () {
 
   console.log("Duck: " + duck);
   console.log("Bet Amount: " + betAmount);
-  console.log("Race Winner Number:" + raceWinner);
-  console.log("Duck Bet Number:" + classDict[duck]);
+
+  console.log("Race Winner Number:"+raceWinner);
+  console.log("Duck Bet Number:"+classDict[duck]);
+  checkNameDict(duck);
+
 });
 
-function checkWinner(duckNumber) {
-  if (duckNumber === raceWinner) {
-    return true;
-  } else {
-    return false;
-  }
+
+function checkWinner(duckNumber){
+    if(duckNumber === raceWinner){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
+
+function checkNameDict(duckName){
+    duckName = duckName.toUpperCase();
+    for(duck in classDict){
+        if(duck === duckName){
+            return;
+        }
+    }
+    document.getElementById("nameError").style = "display: inline; color:red";
+
+}
+
