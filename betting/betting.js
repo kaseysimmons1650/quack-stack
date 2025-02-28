@@ -68,11 +68,13 @@ document.getElementById("submitButton").addEventListener("click", function () {
       if (raceWinner == classDict[duck]) {
         resText.innerText = `Congrats, you have won ${winAmount} dollars!`;
         resText.classList.add("alert-primary");
+        displayBetHistory(duck, winAmount);
         balance += winAmount;
         balanceText.innerText = `Total balance: $${balance}`;
       } else {
         resText.innerHTML = `<p>Sorry, you have lost $${betAmount}. Please call <a href='tel:+18005224700'>1-800-GAMBLER</a> for help</p>`;
         resText.classList.add("alert-danger");
+        displayBetHistory(duck, -betAmount);
         balance -= betAmount;
         balanceText.innerText = `Total balance: $${balance}`;
       }
@@ -116,6 +118,17 @@ function checkNameDict(duckName) {
     "display: block; color:#800000; background-color:#f8d7da; padding: 10px; border-radius: 10";
   return false;
     
+}
+
+function displayBetHistory(duck, betAmount) {
+  const betHistoryElement = document
+    .getElementById("betHistory")
+    .querySelector("tbody");
+  betHistoryElement.innerHTML += `
+    <tr>
+      <td>${duck}</td>
+      <td>$${betAmount}</td>
+    </tr>`;
 }
 
 var modal = document.getElementById("depositModal");
