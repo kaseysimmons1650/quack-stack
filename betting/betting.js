@@ -53,11 +53,13 @@ document.getElementById("submitButton").addEventListener("click", function () {
     progressBar.offsetHeight;
     progressBar.style.transition = "width 5s";
 
-  const winner = Object.keys(classDict).find(key =>classDict[key] === raceWinner);
+    const winner = Object.keys(classDict).find(
+      (key) => classDict[key] === raceWinner
+    );
 
-  resText.classList.add("hidden");
-  resText.classList.remove("alert-primary");
-  resText.classList.remove("alert-danger");
+    resText.classList.add("hidden");
+    resText.classList.remove("alert-primary");
+    resText.classList.remove("alert-danger");
     progressBar.style.width = "100%";
     progressBar.setAttribute("aria-valuenow", 100);
     setTimeout(() => {
@@ -77,9 +79,10 @@ document.getElementById("submitButton").addEventListener("click", function () {
 
       document.getElementById("submitButton").innerText = "Race again";
 
-      setTimeout(function(){
+      setTimeout(function () {
         alert(`The winner is #${raceWinner} ${winner}`);
       }, 100);
+    }, 5000);
   } else if (betAmount > balance) {
     document.getElementById("betError").style = "display: inline; color:red";
   }
@@ -104,7 +107,7 @@ function checkNameDict(duckName) {
   duckName = duckName.toUpperCase();
   for (duck in classDict) {
     if (duck === duckName) {
-            document.getElementById("nameError").style = "display: none; color:red";
+      document.getElementById("nameError").style = "display: none; color:red";
       return true;
     }
   }
@@ -132,10 +135,9 @@ function depositMoney() {
   balance += depositInt;
   modal.style.display = "none";
   document.getElementById("balance").innerText = `Total balance: $${balance}`;
-
+}
 function resetProgress(progressBar) {
   progressBar.style.width = "0%";
   progressBar.setAttribute("aria-valuenow", 0);
   progressBar.textContent = "Ducks racing...";
-
 }
